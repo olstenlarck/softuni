@@ -1,21 +1,31 @@
 {
-  "name": "web-server",
+  "name": "softuni-nodejs-course-todo-app",
   "version": "0.1.0",
-  "description": "SoftUni web server",
-  "repository": "tunnckoCore/gana-compile",
+  "description": "SoftUni Nodejs Course Lab - simple app, using express.js (just for the routing)",
+  "repository": "tunnckoCore/softuni",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
   "main": "index.js",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "5.x.x",
+    "npm": "3.x.x"
+  },
   "dependencies": {
+    "express": "^4.14.0",
     "multiparty": "^4.1.2"
   },
   "devDependencies": {
     "simple-get": "^2.2.5"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "images/",
+    "views/",
+    "db.json"
   ],
   "private": true
 }
