@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating a TODO</title>
+</head>
+<body>
+  <h1>Menu</h1>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/create">Create TODO</a></li>
+    <li><a href="/all">View TODOs</a></li>
+  </ul>
+  <h2>Create a TODO!</h2>
+  <p>Here you can create a TODO with name and description</p>
+  <form action="/create" method="post" enctype="multipart/form-data">
+    <p>Title: <input name="title"></p>
+    <p>Description: <input name="descr"></p>
+    <p>State: <input name="state"></p>
+    <p>Image: <input name="img" type="file"></p>
+    <button>Create</button>
+  </form>
+</body>
+</html>

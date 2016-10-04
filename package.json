@@ -1,0 +1,21 @@
+{
+  "name": "web-server",
+  "version": "0.1.0",
+  "description": "SoftUni web server",
+  "repository": "tunnckoCore/gana-compile",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "precommit.silent": true,
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "multiparty": "^4.1.2"
+  },
+  "devDependencies": {
+    "simple-get": "^2.2.5"
+  },
+  "files": [
+    "index.js"
+  ],
+  "private": true
+}
