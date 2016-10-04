@@ -8,13 +8,28 @@ var app = express()
 var multiparty = require('multiparty')
 
 var get = require('simple-get')
+var readFileCalled = false
+var DATABASE = {}
+
+fs.readFile = function (fp, enc, cb) {
+  if (readFileCalled) return cb(null, JSON.stringify(DATABASE))
+  readFileCalled = true
+  cb(null, '{}')
+}
+
+fs.writeFile = function (fp, data, enc, cb) {
+  DATABASE = JSON.parse(data)
+  cb()
+}
+
+fs.chmodSync('./images', '777')
 
 function getDB (cb) {
   fs.readFile('./db.json', 'utf-8', function (err, data) {
     if (err) throw err
     var db = JSON.parse(data)
     cb(null, {
-      db: JSON.parse(data),
+      db: db,
       count: Object.keys(db).length
     })
   })
@@ -129,6 +144,7 @@ app.post('/details/:id/comment', function (req, res) {
       })
 
       var json = JSON.stringify(db, null, 2)
+
       fs.writeFile('./db.json', json, 'utf-8', function (err) {
         if (err) throw err
         res.redirect(`/details/${id}`)
@@ -144,6 +160,7 @@ app.get('/update/:id/:state', function (req, res) {
     db[id].state = req.params.state // error prone
 
     var json = JSON.stringify(db, null, 2)
+
     fs.writeFile('./db.json', json, 'utf-8', function (err) {
       if (err) throw err
       res.redirect('/all')
@@ -195,7 +212,6 @@ app.post('/create', function (req, res) {
     }
 
     getDB(function (e, data) {
-      console.log(todo, files)
       var db = data.db
       var id = data.count + 1
       todo.title = todo.title[0]
@@ -213,6 +229,7 @@ app.post('/create', function (req, res) {
 
       db[id] = todo
       db = JSON.stringify(db, null, 2)
+
 
       fs.writeFile('./db.json', db, 'utf-8', function (err) {
         if (err) throw err
